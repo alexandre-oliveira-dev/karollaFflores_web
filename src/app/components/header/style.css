@@ -1,0 +1,26 @@
+.header-container {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #fff;
+    gap: 5px;
+
+    &:last-child {
+        justify-content: end !important;
+    }
+}
+
+.row-input {
+    width: 100%;
+    justify-content: space-around;
+}
+
+.logo {
+    width: 100% !important;
+}
+
+.navLink:hover{
+    color: #FF5353 !important;
+}
