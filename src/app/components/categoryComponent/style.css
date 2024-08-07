@@ -1,0 +1,24 @@
+.container-category {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.btn-category {
+    flex: 1;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #FF5353;
+    color: #fff;
+    font-size: 1.5em;
+    text-transform: capitalize;
+    border-color: transparent !important;
+
+    &:hover {
+        background-color: #fff !important;
+        color: #FF5353 !important;
+        border: #FF5353 1px solid !important;
+    }
+}

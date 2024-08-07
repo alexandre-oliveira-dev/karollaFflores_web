@@ -11,6 +11,7 @@ import discontIcon from "./assets/icons/Discount.png";
 import whatsIcon from "./assets/icons/WhatsApp.png";
 import Title from "antd/es/typography/Title";
 import NewsListerComponent from "./components/newsListerComponent";
+import CategoryComponent from "./components/categoryComponent";
 
 export default function Home() {
   return (
@@ -76,7 +77,7 @@ export default function Home() {
                 <img
                   height={50}
                   width={50}
-                  src={deliveryIcon?.src}
+                  src={discontIcon?.src}
                   alt="deliveryicon"
                 />
               </div>
@@ -86,6 +87,7 @@ export default function Home() {
             </Row>
           </Row>
           <NewsListerComponent></NewsListerComponent>
+          <CategoryComponent></CategoryComponent>
         </main>
       </MainComponent>
     </>
