@@ -9,6 +9,7 @@ import {Button, Card, Row} from "antd";
 import {formatter} from "@/app/common/priceFormatter";
 import {MdOutlineShoppingCart} from "react-icons/md";
 import TitleComponent from "../titleComponent";
+import CardProduct from "../cardProductComponent";
 
 const data: Pick<Products, "id" | "imgUrl" | "price" | "title">[] = [
   {
@@ -44,37 +45,7 @@ export default function NewsListerComponent() {
           gap: "20px",
         }}
       >
-        {data?.map((item, index) => {
-          return (
-            <Card className="card-product" key={index}>
-              <Row style={{justifyContent: "center"}}>
-                <img
-                  className="img-product"
-                  src={item?.imgUrl}
-                  alt={item?.title}
-                />
-              </Row>
-              <Row style={{justifyContent: "center"}}>
-                <Title
-                  style={{width: "100%", fontSize: "1em", fontWeight: "normal"}}
-                  level={5}
-                >
-                  {item?.title}
-                </Title>
-              </Row>
-              <Row style={{justifyContent: "center"}}>
-                <Title style={{color: "#0C9A00"}} level={3}>
-                  {formatter(item?.price)}
-                </Title>
-              </Row>
-              <Row style={{justifyContent: "center"}}>
-                <Button>
-                  <MdOutlineShoppingCart /> Adicionar no carrinho
-                </Button>
-              </Row>
-            </Card>
-          );
-        })}
+        <CardProduct data={data}></CardProduct>
       </Row>
     </section>
   );

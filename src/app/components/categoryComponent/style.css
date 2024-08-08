@@ -15,6 +15,32 @@
     font-size: 1.5em;
     text-transform: capitalize;
     border-color: transparent !important;
+    transition: 0.4s ease;
+
+    &:hover {
+        background-color: #fff !important;
+        color: #FF5353 !important;
+        border: #FF5353 1px solid !important;
+    }
+}
+
+.btn-category-active {
+    background-color: #fff !important;
+    color: #FF5353 !important;
+    border: #FF5353 1px solid !important;
+    flex: 1;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+
+.btn-view-more {
+    width: 200px;
+    height: 50px;
+    background-color: #FF5353;
+    color: #fff;
+    font-size: 19px;
 
     &:hover {
         background-color: #fff !important;

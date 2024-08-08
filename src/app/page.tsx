@@ -88,6 +88,7 @@ export default function Home() {
           </Row>
           <NewsListerComponent></NewsListerComponent>
           <CategoryComponent></CategoryComponent>
+          <div className="banner2" style={{width: "100%"}}></div>
         </main>
       </MainComponent>
     </>
