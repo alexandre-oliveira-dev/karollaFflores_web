@@ -39,8 +39,12 @@
     width: 200px;
     height: 50px;
     background-color: #FF5353;
-    color: #fff;
+    color: #fff !important;
     font-size: 19px;
+    border-radius: 10px;
+    display: grid;
+    place-content: center;
+
 
     &:hover {
         background-color: #fff !important;

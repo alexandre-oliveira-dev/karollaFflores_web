@@ -7,36 +7,10 @@ import {BiSearch} from "react-icons/bi";
 import {FaInstagram, FaWhatsapp} from "react-icons/fa";
 import {PiShoppingCartLight} from "react-icons/pi";
 import Link from "antd/es/typography/Link";
+import {buttonsCategory} from "../categoryComponent";
 
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
-  const navBtns = [
-    {
-      key: "/",
-      title: "Início",
-      url: "/",
-    },
-    {
-      key: "flores",
-      title: "Flores",
-      url: "/categorias/flores",
-    },
-    {
-      key: "presentes",
-      title: "Presentes",
-      url: "/categorias/flores",
-    },
-    {
-      key: "cestas",
-      title: "Cestas",
-      url: "/categoria/cestas",
-    },
-    {
-      key: "arranjos",
-      title: "Arranjos",
-      url: "/categoria/arranjos",
-    },
-  ];
 
   useEffect(() => {
     const urlPatch = () => {
@@ -101,18 +75,32 @@ export default function Header() {
             margin: "0px",
           }}
         >
-          {navBtns.map(item => {
+          <Link
+            className="navLink"
+            style={{
+              fontSize: "18px",
+              textTransform: "capitalize",
+              color: "#121212",
+            }}
+            href={`/`}
+          >
+            início
+          </Link>
+          {buttonsCategory.slice(0, 5).map(item => {
             return (
               <Link
                 className="navLink"
                 style={{
                   fontSize: "18px",
-                  color: patch?.includes(item.key) ? "#FF5353" : "#121212",
+                  textTransform: "capitalize",
+                  color: patch?.includes(String(item?.id))
+                    ? "#FF5353"
+                    : "#121212",
                 }}
-                href={item.url}
-                key={item.key}
+                href={`/categorias/${item?.id}`}
+                key={item?.id}
               >
-                {item.title}
+                {item?.name}
               </Link>
             );
           })}

@@ -2,35 +2,10 @@
 "use client";
 import React from "react";
 import "./style.css";
-import Title from "antd/es/typography/Title";
-import {Products} from "@/types";
-import imgExemple from "../../assets/prodExemple.png";
-import {Button, Card, Row} from "antd";
-import {formatter} from "@/app/common/priceFormatter";
-import {MdOutlineShoppingCart} from "react-icons/md";
+import { Row} from "antd";
 import TitleComponent from "../titleComponent";
 import CardProduct from "../cardProductComponent";
-
-const data: Pick<Products, "id" | "imgUrl" | "price" | "title">[] = [
-  {
-    id: "1",
-    imgUrl: imgExemple.src,
-    price: "50",
-    title: "Buquê de Rosas Vermelhas 6 Unidades",
-  },
-  {
-    id: "2",
-    imgUrl: imgExemple.src,
-    price: "50",
-    title: "Buquê de Rosas Vermelhas 6 Unidades",
-  },
-  {
-    id: "3",
-    imgUrl: imgExemple.src,
-    price: "50",
-    title: "Buquê de Rosas Vermelhas 6 Unidades",
-  },
-];
+import {dataMock} from "@/app/datamock";
 
 export default function NewsListerComponent() {
   return (
@@ -45,7 +20,7 @@ export default function NewsListerComponent() {
           gap: "20px",
         }}
       >
-        <CardProduct data={data}></CardProduct>
+        <CardProduct data={dataMock.slice(0, 6)}></CardProduct>
       </Row>
     </section>
   );

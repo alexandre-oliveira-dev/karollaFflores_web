@@ -3,6 +3,13 @@
     min-height: 500px;
     height: auto;
     background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container:last-child {
+
+    align-items: flex-end;
 }
 
 .children-container {

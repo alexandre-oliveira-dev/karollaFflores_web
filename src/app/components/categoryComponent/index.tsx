@@ -6,8 +6,9 @@ import TitleComponent from "../titleComponent";
 import {Button, Row} from "antd";
 import {dataMock} from "@/app/datamock";
 import CardProduct from "../cardProductComponent";
+import Link from "antd/es/typography/Link";
 
-const buttonsCategory = [
+export const buttonsCategory = [
   {
     name: "buquês",
     id: 1,
@@ -88,7 +89,9 @@ export default function CategoryComponent() {
               margin: "50px 0 50px 0",
             }}
           >
-            <Button className="btn-view-more">Ver mais +</Button>
+            <Link href={`/categorias/${category}`} className="btn-view-more">
+              Ver mais +
+            </Link>
           </Row>
         </Row>
       </>

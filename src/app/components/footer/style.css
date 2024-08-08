@@ -1,17 +1,17 @@
 .footer-component {
     width: 100%;
-    min-height: 400px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    padding: 2rem;
 }
 
 .col-footer {
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: auto;
     text-align: center;
 }
 
