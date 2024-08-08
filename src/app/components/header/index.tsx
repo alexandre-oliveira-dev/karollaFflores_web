@@ -8,9 +8,13 @@ import {FaInstagram, FaWhatsapp} from "react-icons/fa";
 import {PiShoppingCartLight} from "react-icons/pi";
 import Link from "antd/es/typography/Link";
 import {buttonsCategory} from "../categoryComponent";
+import {Categorys} from "@/types";
+import {getCategorys} from "@/service/api";
 
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
+  const [data, setData] = useState<Categorys[]>([]);
+  console.log("🚀 ~ Header ~ data:", data);
 
   useEffect(() => {
     const urlPatch = () => {
@@ -19,6 +23,11 @@ export default function Header() {
       }
     };
     setPatch(urlPatch());
+
+    async function get() {
+      setData(await getCategorys());
+    }
+    get();
   }, []);
 
   return (
