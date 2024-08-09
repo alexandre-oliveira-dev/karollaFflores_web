@@ -2,14 +2,25 @@ import {Categorys, Products} from "@/types";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://karolla-flores-api.vercel.app/",
   headers: {
     Authorization: "*",
   },
+  timeout: 10000,
 });
 
-export const getCategorys = async () => {
-  const res = await api.get<Categorys[]>(`/categorys`);
+type FindManyResponse<t> = {
+  pageInfo: {
+    total: string;
+    hasNextPage: boolean;
+    currentPage: number;
+    lastPage: number;
+  };
+  response: t[];
+};
+
+export const getCategorys = async (): Promise<FindManyResponse<Categorys>> => {
+  const res = await api.get<FindManyResponse<Categorys>>(`/categorys`);
   return res.data;
 };
 

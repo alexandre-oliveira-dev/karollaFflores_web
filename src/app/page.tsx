@@ -12,6 +12,7 @@ import whatsIcon from "./assets/icons/WhatsApp.png";
 import Title from "antd/es/typography/Title";
 import NewsListerComponent from "./components/newsListerComponent";
 import CategoryComponent from "./components/categoryComponent";
+import DataProvider from "./context/dataProvider";
 
 export default function Home() {
   return (
