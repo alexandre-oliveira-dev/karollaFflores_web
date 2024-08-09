@@ -1,4 +1,5 @@
 import {Categorys} from "@/types";
+import {notification} from "antd";
 import axios from "axios";
 
 const api = axios.create({
@@ -6,9 +7,24 @@ const api = axios.create({
   headers: {
     Authorization: "*",
   },
+  timeout:10000
 });
 
+type FindManyResponse<t> = {
+  pageInfo: {
+    total: string;
+    hasNextPage: boolean;
+    currentPage: number;
+    lastPage: number;
+  };
+  response: t[];
+};
+
 export const getCategorys = async () => {
-  const res = await api.get<Categorys[]>(`/categorys`);
-  return res.data;
+  try {
+    const res = await api.get<FindManyResponse<Categorys>>(`/categorys`);
+    return res.data;
+  } catch (err) {
+    return notification.error({message: "Ops ocorreu algum erro."});
+  }
 };

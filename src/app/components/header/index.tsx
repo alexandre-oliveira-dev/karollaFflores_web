@@ -1,20 +1,17 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./style.css";
-import {Image, Input, Row} from "antd";
+import {Image, Input, Row, Skeleton} from "antd";
 import logo from "../../assets/logo.png";
 import {BiSearch} from "react-icons/bi";
 import {FaInstagram, FaWhatsapp} from "react-icons/fa";
 import {PiShoppingCartLight} from "react-icons/pi";
 import Link from "antd/es/typography/Link";
-import {buttonsCategory} from "../categoryComponent";
-import {Categorys} from "@/types";
-import {getCategorys} from "@/service/api";
+import {dataProviderContext} from "@/app/context/dataProvider";
 
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
-  const [data, setData] = useState<Categorys[]>([]);
-  console.log("🚀 ~ Header ~ data:", data);
+  const {data} = useContext(dataProviderContext);
 
   useEffect(() => {
     const urlPatch = () => {
@@ -23,11 +20,6 @@ export default function Header() {
       }
     };
     setPatch(urlPatch());
-
-    async function get() {
-      setData(await getCategorys());
-    }
-    get();
   }, []);
 
   return (
@@ -84,35 +76,55 @@ export default function Header() {
             margin: "0px",
           }}
         >
-          <Link
-            className="navLink"
-            style={{
-              fontSize: "18px",
-              textTransform: "capitalize",
-              color: "#121212",
-            }}
-            href={`/`}
-          >
-            início
-          </Link>
-          {buttonsCategory.slice(0, 5).map(item => {
-            return (
+          {!data.length ? (
+            <div style={{display: "flex", gap: 10}}>
+              {Object.entries([1,2,3]).map((_i, index) => (
+                <>
+                  <Skeleton.Button
+                    key={index}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100px",
+                    }}
+                    active
+                  ></Skeleton.Button>
+                </>
+              ))}
+            </div>
+          ) : (
+            <>
               <Link
                 className="navLink"
                 style={{
                   fontSize: "18px",
                   textTransform: "capitalize",
-                  color: patch?.includes(String(item?.id))
-                    ? "#FF5353"
-                    : "#121212",
+                  color: "#121212",
                 }}
-                href={`/categorias/${item?.id}`}
-                key={item?.id}
+                href={`/`}
               >
-                {item?.name}
+                início
               </Link>
-            );
-          })}
+              {data?.slice(0, 5).map(item => {
+                return (
+                  <Link
+                    className="navLink"
+                    style={{
+                      fontSize: "18px",
+                      textTransform: "capitalize",
+                      color: patch?.includes(String(item?.id))
+                        ? "#FF5353"
+                        : "#121212",
+                    }}
+                    href={`/categorias/${item?.id}`}
+                    key={item?.id}
+                  >
+                    {item?.name}
+                  </Link>
+                );
+              })}
+            </>
+          )}
         </nav>
       </Row>
     </header>
