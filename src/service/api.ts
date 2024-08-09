@@ -20,11 +20,12 @@ type FindManyResponse<t> = {
   response: t[];
 };
 
-export const getCategorys = async () => {
-  try {
-    const res = await api.get<FindManyResponse<Categorys>>(`/categorys`);
-    return res.data;
+export const getCategorys = async (): Promise<FindManyResponse<Categorys>> => {
+  const res = await api.get<FindManyResponse<Categorys>>(`/categorys`);
+  return res.data;
+  /*  try {
   } catch (err) {
-    return notification.error({message: "Ops ocorreu algum erro."});
-  }
+    notification.error({message: "Ops ocorreu algum erro."});
+    return ;
+  } */
 };

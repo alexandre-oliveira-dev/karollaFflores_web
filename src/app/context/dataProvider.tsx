@@ -1,5 +1,5 @@
 "use client";
-import { getCategorys } from "@/service/api";
+import {getCategorys} from "@/service/api";
 import {Categorys} from "@/types";
 import React, {createContext, useEffect, useState} from "react";
 
