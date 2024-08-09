@@ -28,3 +28,20 @@ export const getProducts = async () => {
   const res = await api.get<Products[]>(`/products`);
   return res.data;
 };
+
+export const tokenVerify = async ({token}: {token: string}) => {
+  const res = await api.get<{tokenIsValid: boolean}>(`/authVerify`, {
+    headers: {
+      token,
+    },
+  });
+  return res.data;
+};
+
+export const getToken = async () => {
+  const res = await api.post<{token: string; userMail: string}>(`/auth`, {
+    email: "ale@gmail.com",
+    password: "123123",
+  });
+  return res.data;
+};

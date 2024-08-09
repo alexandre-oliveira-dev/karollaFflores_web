@@ -1,17 +1,20 @@
 "use client";
 import React, {useContext, useEffect, useState} from "react";
 import "./style.css";
-import {Image, Input, Row, Skeleton} from "antd";
+import {Button, Image, Input, Row, Skeleton} from "antd";
 import logo from "../../assets/logo.png";
-import {BiSearch} from "react-icons/bi";
+import {BiExit, BiSearch} from "react-icons/bi";
 import {FaInstagram, FaWhatsapp} from "react-icons/fa";
 import {PiShoppingCartLight} from "react-icons/pi";
 import Link from "antd/es/typography/Link";
 import {dataProviderContext} from "@/app/context/dataProvider";
+import {authProviderContext} from "@/app/context/authProvider";
+import {FiUser} from "react-icons/fi";
 
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
   const {data} = useContext(dataProviderContext);
+  const {userEmail} = useContext(authProviderContext);
 
   useEffect(() => {
     const urlPatch = () => {
@@ -43,27 +46,46 @@ export default function Header() {
             placeholder="O que você precisa hoje ?"
           ></Input>
         </div>
-        <div
+        {/*  <div
           style={{
             flex: 1,
             display: "flex",
             justifyContent: "center",
             gap: "1rem",
           }}
+        ></div> */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "1rem",
+            flex: 1,
+          }}
         >
-          <Link
-            target="_blank"
-            href="https://www.instagram.com/karolla_flores/"
-          >
-            <FaInstagram color="#FF5353" size={30} />
-          </Link>
-          <Link
-            target="_blank"
-            href="https://api.whatsapp.com/send?phone=5511953513154&text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es!%0A"
-          >
-            <FaWhatsapp color="#FF5353" size={30} />
-          </Link>
-          <PiShoppingCartLight color="#121212" size={30} />
+          <Row style={{alignItems: "center", gap: 15}}>
+            <Row style={{gap: 10}}>
+              <Link
+                target="_blank"
+                href="https://www.instagram.com/karolla_flores/"
+              >
+                <FaInstagram color="#FF5353" size={30} />
+              </Link>
+              <Link
+                target="_blank"
+                href="https://api.whatsapp.com/send?phone=5511953513154&text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es!%0A"
+              >
+                <FaWhatsapp color="#FF5353" size={30} />
+              </Link>
+              <PiShoppingCartLight color="#121212" size={30} />
+            </Row>
+            <div style={{display: "flex", alignItems: "center"}}>
+              <FiUser size={20}></FiUser>
+              <p>{userEmail}</p>
+            </div>
+            <Button style={{width: "max-content", border: 0, fontSize: "19px"}}>
+              sair <BiExit></BiExit>
+            </Button>
+          </Row>
         </div>
       </Row>
       <Row style={{width: "100%"}}>
@@ -78,18 +100,16 @@ export default function Header() {
         >
           {!data.length ? (
             <div style={{display: "flex", gap: 10}}>
-              {Object.entries([1,2,3]).map((_i, index) => (
-                <>
-                  <Skeleton.Button
-                    key={index}
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "100px",
-                    }}
-                    active
-                  ></Skeleton.Button>
-                </>
+              {Object.entries([1, 2, 3]).map((_i, index) => (
+                <Skeleton.Button
+                  key={index}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100px",
+                  }}
+                  active
+                ></Skeleton.Button>
               ))}
             </div>
           ) : (
