@@ -14,7 +14,6 @@ import {getCategorys} from "@/service/api";
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
   const [data, setData] = useState<Categorys[]>([]);
-  console.log("🚀 ~ Header ~ data:", data);
 
   useEffect(() => {
     const urlPatch = () => {

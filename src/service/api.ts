@@ -1,4 +1,4 @@
-import {Categorys} from "@/types";
+import {Categorys, Products} from "@/types";
 import axios from "axios";
 
 const api = axios.create({
@@ -10,5 +10,10 @@ const api = axios.create({
 
 export const getCategorys = async () => {
   const res = await api.get<Categorys[]>(`/categorys`);
+  return res.data;
+};
+
+export const getProducts = async () => {
+  const res = await api.get<Products[]>(`/products`);
   return res.data;
 };
