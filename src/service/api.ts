@@ -3,11 +3,11 @@ import {notification} from "antd";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://karolla-flores-api.vercel.app/",
   headers: {
     Authorization: "*",
   },
-  timeout:10000
+  timeout: 10000,
 });
 
 type FindManyResponse<t> = {
