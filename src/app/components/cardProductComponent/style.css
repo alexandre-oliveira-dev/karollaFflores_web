@@ -8,3 +8,8 @@
     padding: 0px !important;
     cursor: pointer;
 }
+
+.img-product{
+    width: 60%;
+    object-fit: cover;
+}

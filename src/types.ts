@@ -1,40 +1,40 @@
-// enums
+// Importação das enums para serem usadas nos tipos
 export enum OrderStatus {
-  deliveryed = "deliveryed",
-  delivery = "delivery",
-  waitingPayment = "waitingPayment",
+  DELIVERYED = "deliveryed",
+  DELIVERY = "delivery",
+  WAITING_PAYMENT = "waitingPayment",
 }
 
 export enum PaymentMethod {
-  pix = "pix",
-  money = "money",
-  credit = "credit",
-  debit = "debit",
+  PIX = "pix",
+  MONEY = "money",
+  CREDIT = "credit",
+  DEBIT = "debit",
 }
 
-// Products model
-export interface Products {
-  id: string;
+// Tipos para os modelos do Prisma
+
+export type Products = {
+  id: number;
   title: string;
   price: string;
   type: string;
   imgUrl: string;
   qtdStock: number;
   createdAt: Date;
+  isNewsLister: boolean;
   categoryId: number;
-  Categorys?: Categorys;
-}
+  Categorys: Categorys;
+};
 
-// Categorys model
-export interface Categorys {
+export type Categorys = {
   id: number;
   name: string;
   createdAt: Date;
-  Products?: Products[];
-}
+  Products: Products[];
+};
 
-// Users model
-export interface Users {
+export type Users = {
   id: string;
   createdAt: Date;
   name: string;
@@ -43,11 +43,10 @@ export interface Users {
   address: string;
   zipCode: string;
   Orders?: Orders[];
-}
+};
 
-// Orders model
-export interface Orders {
-  id: string;
+export type Orders = {
+  id: number;
   createdAt: Date;
   items: string[];
   total: string;
@@ -55,5 +54,5 @@ export interface Orders {
   paymentMethod: PaymentMethod;
   userId: string;
   status: OrderStatus;
-  Users?: Users;
-}
+  Users: Users;
+};

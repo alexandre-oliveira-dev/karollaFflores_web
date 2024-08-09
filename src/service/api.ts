@@ -25,7 +25,7 @@ export const getCategorys = async (): Promise<FindManyResponse<Categorys>> => {
 };
 
 export const getProducts = async () => {
-  const res = await api.get<Products[]>(`/products`);
+  const res = await api.get<FindManyResponse<Products>>(`/products`);
   return res.data;
 };
 

@@ -16,12 +16,13 @@ export default function CardProduct({
   return (
     <>
       {data?.map((item, index) => {
+        console.log(item?.imgUrl);
         return (
           <Card className="card-product" key={index}>
             <Row style={{justifyContent: "center"}}>
               <img
                 className="img-product"
-                src={item?.imgUrl}
+                src={`data:image/*;base64,${item?.imgUrl}`}
                 alt={item?.title}
               />
             </Row>

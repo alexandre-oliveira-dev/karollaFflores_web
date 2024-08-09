@@ -1,12 +1,13 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import "./style.css";
 import TitleComponent from "../titleComponent";
 import {Button, Row} from "antd";
 import {dataMock} from "@/app/datamock";
 import CardProduct from "../cardProductComponent";
 import Link from "antd/es/typography/Link";
+import {dataProviderContext} from "@/app/context/dataProvider";
 
 export const buttonsCategory = [
   {
@@ -33,6 +34,7 @@ export const buttonsCategory = [
 
 export default function CategoryComponent() {
   const [category, setCategory] = useState(buttonsCategory[0]?.id);
+  const {products} = useContext(dataProviderContext);
   const TabsCategory = () => {
     return (
       <>
@@ -79,7 +81,7 @@ export default function CategoryComponent() {
             }}
           >
             <CardProduct
-              data={dataMock.filter(i => i.categoryId === category)}
+              data={products.filter(i => i.categoryId === category)}
             ></CardProduct>
           </Row>
           <Row
