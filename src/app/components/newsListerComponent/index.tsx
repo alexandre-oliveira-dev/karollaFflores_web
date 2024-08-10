@@ -5,9 +5,6 @@ import "./style.css";
 import {Row} from "antd";
 import TitleComponent from "../titleComponent";
 import CardProduct from "../cardProductComponent";
-import {dataMock} from "@/app/datamock";
-import {getProducts} from "@/service/api";
-import {Products} from "@/types";
 import { dataProviderContext } from "@/app/context/dataProvider";
 
 export default function NewsListerComponent() {
