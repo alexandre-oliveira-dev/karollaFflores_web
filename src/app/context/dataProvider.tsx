@@ -4,8 +4,8 @@ import {Categorys, Products} from "@/types";
 import React, {createContext, useEffect, useState} from "react";
 
 interface Props {
-  data: Categorys[];
-  setData?: React.Dispatch<React.SetStateAction<Categorys[]>>;
+  categorys: Categorys[];
+  setCategorys?: React.Dispatch<React.SetStateAction<Categorys[]>>;
   products: Products[];
   setProducts?: React.Dispatch<React.SetStateAction<Products[]>>;
 }
@@ -13,15 +13,16 @@ interface Props {
 export const dataProviderContext = createContext({} as Props);
 
 export default function DataProvider({children}: {children: React.ReactNode}) {
-  const [data, setData] = useState<Categorys[]>([]);
+  const [categorys, setCategorys] = useState<Categorys[]>([]);
   const [products, setProducts] = useState<Products[]>([]);
 
   useEffect(() => {
     async function get() {
-      const {response} = await getCategorys();
-      const {response: responseProducts} = await getProducts();
-      setData(response);
-      setProducts(responseProducts);
+      const [{response: dataCategorys}, {response: dataProducts}] =
+        await Promise.all([await getCategorys(), await getProducts()]);
+
+      setCategorys(dataCategorys);
+      setProducts(dataProducts);
     }
 
     get();
@@ -29,7 +30,7 @@ export default function DataProvider({children}: {children: React.ReactNode}) {
 
   return (
     <dataProviderContext.Provider
-      value={{data, products, setData, setProducts}}
+      value={{categorys, setCategorys, products, setProducts}}
     >
       {children}
     </dataProviderContext.Provider>

@@ -4,37 +4,13 @@ import React, {useContext, useState} from "react";
 import "./style.css";
 import TitleComponent from "../titleComponent";
 import {Button, Row} from "antd";
-import {dataMock} from "@/app/datamock";
 import CardProduct from "../cardProductComponent";
 import Link from "antd/es/typography/Link";
 import {dataProviderContext} from "@/app/context/dataProvider";
 
-export const buttonsCategory = [
-  {
-    name: "buquês",
-    id: 1,
-  },
-  {
-    name: "decoração",
-    id: 2,
-  },
-  {
-    name: "flores",
-    id: 3,
-  },
-  {
-    name: "acessórios",
-    id: 4,
-  },
-  {
-    name: "pelúcias",
-    id: 5,
-  },
-];
-
 export default function CategoryComponent() {
-  const [category, setCategory] = useState(buttonsCategory[0]?.id);
-  const {products} = useContext(dataProviderContext);
+  const {products, categorys} = useContext(dataProviderContext);
+  const [category, setCategory] = useState(categorys[0]?.id);
   const TabsCategory = () => {
     return (
       <>
@@ -46,7 +22,7 @@ export default function CategoryComponent() {
             overflowX: "hidden",
           }}
         >
-          {buttonsCategory.map((item, index) => {
+          {categorys.map((item, index) => {
             return (
               <Button
                 onClick={() => setCategory(item?.id)}
@@ -69,7 +45,7 @@ export default function CategoryComponent() {
               textTransform: "capitalize",
             }}
           >
-            {buttonsCategory[category - 1]?.name}
+            {categorys[category - 1]?.name}
           </h3>
           <br />
 

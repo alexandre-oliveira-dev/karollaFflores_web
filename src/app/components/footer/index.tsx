@@ -3,11 +3,12 @@
 
 import {Col, Row, Typography} from "antd";
 import Link from "antd/es/typography/Link";
-import React from "react";
+import React, {useContext} from "react";
 import "./style.css";
-import {buttonsCategory} from "../categoryComponent";
+import {dataProviderContext} from "@/app/context/dataProvider";
 
 export default function Footer() {
+  const {categorys} = useContext(dataProviderContext);
   return (
     <footer className="footer-component">
       <Row
@@ -21,7 +22,7 @@ export default function Footer() {
         <Col className="col-footer">
           <h3>O que procura hoje?</h3>
           <br />
-          {buttonsCategory.map((item, index) => {
+          {categorys.map((item, index) => {
             return (
               <Link href={`/categorias/${item?.id}`} key={index}>
                 {item.name}

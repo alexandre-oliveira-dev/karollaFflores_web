@@ -6,15 +6,15 @@ import "./style.css";
 import {useParams} from "next/navigation";
 import TitleComponent from "@/app/components/titleComponent";
 import CardProduct from "@/app/components/cardProductComponent";
-import {dataMock} from "@/app/datamock";
 import {Row} from "antd";
 import {dataProviderContext} from "@/app/context/dataProvider";
 
 export default function Categories() {
   const {id} = useParams();
-  const {data} = useContext(dataProviderContext);
+  const {categorys, products} = useContext(dataProviderContext);
 
-  const categoryName = data[data?.findIndex(i => i.id === Number(id))]?.name;
+  const categoryName =
+    categorys[categorys?.findIndex(i => i.id === Number(id))]?.name;
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function Categories() {
             }}
           >
             <CardProduct
-              data={dataMock.filter(i => i.categoryId === Number(id))}
+              data={products.filter(i => i.categoryId === Number(id))}
             ></CardProduct>
           </Row>
         </main>

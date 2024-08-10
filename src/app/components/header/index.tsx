@@ -13,7 +13,7 @@ import {FiUser} from "react-icons/fi";
 
 export default function Header() {
   const [patch, setPatch] = useState<string | undefined>("");
-  const {data} = useContext(dataProviderContext);
+  const {categorys} = useContext(dataProviderContext);
   const {userEmail} = useContext(authProviderContext);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function Header() {
             margin: "0px",
           }}
         >
-          {!data.length ? (
+          {!categorys.length ? (
             <div style={{display: "flex", gap: 10}}>
               {Object.entries([1, 2, 3]).map((_i, index) => (
                 <Skeleton.Button
@@ -125,7 +125,7 @@ export default function Header() {
               >
                 início
               </Link>
-              {data?.slice(0, 5).map(item => {
+              {categorys?.slice(0, 5).map(item => {
                 return (
                   <Link
                     className="navLink"
