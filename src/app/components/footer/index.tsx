@@ -5,7 +5,7 @@ import {Col, Row, Typography} from "antd";
 import Link from "antd/es/typography/Link";
 import React, {useContext} from "react";
 import "./style.css";
-import {dataProviderContext} from "@/app/context/dataProvider";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function Footer() {
   const {categorys} = useContext(dataProviderContext);

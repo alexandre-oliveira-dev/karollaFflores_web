@@ -7,8 +7,8 @@ import {BiExit, BiSearch} from "react-icons/bi";
 import {FaInstagram, FaWhatsapp} from "react-icons/fa";
 import {PiShoppingCartLight} from "react-icons/pi";
 import Link from "antd/es/typography/Link";
-import {dataProviderContext} from "@/app/context/dataProvider";
-import {authProviderContext} from "@/app/context/authProvider";
+import {dataProviderContext} from "@/context/dataProvider";
+import {authProviderContext} from "@/context/authProvider";
 import {FiUser} from "react-icons/fi";
 
 export default function Header() {

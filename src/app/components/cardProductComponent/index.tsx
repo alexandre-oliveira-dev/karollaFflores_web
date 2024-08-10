@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import {formatter} from "@/app/common/priceFormatter";
+import {formatter} from "@/common/priceFormatter";
 import {Products} from "@/types";
 import {Button, Card, Row} from "antd";
 import Title from "antd/es/typography/Title";
 import React from "react";
 import {MdOutlineShoppingCart} from "react-icons/md";
 import "./style.css";
+import Link from "antd/es/typography/Link";
 
 export default function CardProduct({
   data,
@@ -16,15 +17,23 @@ export default function CardProduct({
   return (
     <>
       {data?.map((item, index) => {
-        console.log(item?.imgUrl);
         return (
           <Card className="card-product" key={index}>
             <Row style={{justifyContent: "center"}}>
-              <img
-                className="img-product"
-                src={`data:image/*;base64,${item?.imgUrl}`}
-                alt={item?.title}
-              />
+              <Link
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                href={`/produto/${item?.id}`}
+              >
+                <img
+                  className="img-product"
+                  src={`data:image/*;base64,${item?.imgUrl}`}
+                  alt={item?.title}
+                />
+              </Link>
             </Row>
             <Row style={{justifyContent: "center"}}>
               <Title

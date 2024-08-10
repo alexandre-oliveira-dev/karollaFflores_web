@@ -5,10 +5,10 @@ import "./style.css";
 import {Row} from "antd";
 import TitleComponent from "../titleComponent";
 import CardProduct from "../cardProductComponent";
-import { dataProviderContext } from "@/app/context/dataProvider";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function NewsListerComponent() {
- const {products} = useContext(dataProviderContext);
+  const {products} = useContext(dataProviderContext);
 
   return (
     <section className="container-newslister">

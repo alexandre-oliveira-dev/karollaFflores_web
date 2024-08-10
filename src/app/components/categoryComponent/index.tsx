@@ -6,7 +6,7 @@ import TitleComponent from "../titleComponent";
 import {Button, Row} from "antd";
 import CardProduct from "../cardProductComponent";
 import Link from "antd/es/typography/Link";
-import {dataProviderContext} from "@/app/context/dataProvider";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function CategoryComponent() {
   const {products, categorys} = useContext(dataProviderContext);

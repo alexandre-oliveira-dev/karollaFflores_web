@@ -29,6 +29,11 @@ export const getProducts = async () => {
   return res.data;
 };
 
+export const getProduct = async ({id}: {id: number}) => {
+  const res = await api.get<Products>(`/product/${id}`);
+  return res.data;
+};
+
 export const tokenVerify = async ({token}: {token: string}) => {
   const res = await api.get<{tokenIsValid: boolean}>(`/authVerify`, {
     headers: {

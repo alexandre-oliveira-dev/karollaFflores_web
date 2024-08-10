@@ -7,7 +7,7 @@ import {useParams} from "next/navigation";
 import TitleComponent from "@/app/components/titleComponent";
 import CardProduct from "@/app/components/cardProductComponent";
 import {Row} from "antd";
-import {dataProviderContext} from "@/app/context/dataProvider";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function Categories() {
   const {id} = useParams();
