@@ -1,7 +1,5 @@
 "use client";
-import {getCategorys, getToken, tokenVerify} from "@/service/api";
-import {Categorys} from "@/types";
-import {LocaleProviderProps} from "antd/es/locale";
+import {tokenVerify} from "@/service/api";
 import React, {createContext, useEffect, useState} from "react";
 
 interface Props {
@@ -37,8 +35,8 @@ export default function AuthProvider({children}: {children: React.ReactNode}) {
         const {tokenIsValid} = await tokenVerify({token: t?.token});
         //setIsValidToken(tokenIsValid);
 
-          if (!tokenIsValid) {
-            localStorage.removeItem("authToken");
+        if (!tokenIsValid) {
+          localStorage.removeItem("authToken");
           // logout function here
         }
       }
