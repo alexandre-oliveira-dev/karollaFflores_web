@@ -34,7 +34,15 @@ export default function ProductPage() {
               </Card>
             </div>
             <div style={{flex: 1}} className="box-img-product">
-              <div style={{display: "flex", flexDirection: "column", gap: 50}}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 50,
+                  width: "100%",
+                  alignItems: "flex-start",
+                }}
+              >
                 <h2
                   style={{
                     fontSize: "2em",
@@ -55,7 +63,7 @@ export default function ProductPage() {
                     backgroundColor: "#FF5353",
                     height: 50,
                     color: "#fff",
-                    cursor:'pointer'
+                    cursor: "pointer",
                   }}
                 >
                   Adicionar no carrinho

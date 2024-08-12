@@ -35,7 +35,7 @@ export default function CardProduct({
                 />
               </Link>
             </Row>
-            <Row style={{justifyContent: "center"}}>
+            <Row style={{justifyContent: "center", textAlign: "center"}}>
               <Title
                 style={{width: "100%", fontSize: "1em", fontWeight: "normal"}}
                 level={5}
@@ -43,12 +43,12 @@ export default function CardProduct({
                 {item?.title}
               </Title>
             </Row>
-            <Row style={{justifyContent: "center"}}>
+            <Row style={{justifyContent: "center", textAlign: "center"}}>
               <Title style={{color: "#0C9A00"}} level={3}>
                 {formatter(item?.price)}
               </Title>
             </Row>
-            <Row style={{justifyContent: "center"}}>
+            <Row style={{justifyContent: "center", textAlign: "center"}}>
               <Button>
                 <MdOutlineShoppingCart /> Adicionar no carrinho
               </Button>

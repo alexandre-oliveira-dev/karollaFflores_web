@@ -23,7 +23,7 @@ export default function NewsListerComponent() {
         }}
       >
         <CardProduct
-          data={products.filter(item => item.isNewsLister).slice(0, 6)}
+          data={products.filter(item => item?.isNewsLister).slice(0, 6)}
         ></CardProduct>
       </Row>
     </section>
