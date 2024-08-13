@@ -12,6 +12,7 @@ import {formatter} from "@/common/priceFormatter";
 export default function ProductPage() {
   const {id} = useParams<{id: string}>();
   const [product, setProduct] = useState<Products>();
+  const [imgBase64, setImgBase64] = useState("");
   useEffect(() => {
     async function get() {
       setProduct(await getProduct({id: Number(id)}));
@@ -26,11 +27,31 @@ export default function ProductPage() {
           <Row className="product-box">
             <div style={{flex: 1}} className="box-img-product">
               <Card className="card-img-product">
-                <Image
-                  src={`data:image/*;base64,${product?.imgUrl}`}
-                  alt={product?.title}
-                  className="imgProduct"
-                ></Image>
+                <div>
+                  {" "}
+                  <Image
+                    src={`data:image/*;base64,${
+                      imgBase64 ? imgBase64 : product?.Photos[0]?.imgBase64
+                    }`}
+                    alt={product?.title}
+                    className="imgProduct"
+                  ></Image>
+                </div>
+                <br />
+                <Row style={{gap: 10}}>
+                  {product?.Photos?.map((photo, index) => {
+                    return (
+                      <Image
+                        className="img-product-mini"
+                        preview={false}
+                        onClick={() => setImgBase64(photo?.imgBase64)}
+                        key={index}
+                        src={`data:image/*;base64,${photo?.imgBase64}`}
+                        alt={String(photo?.prodId)}
+                      ></Image>
+                    );
+                  })}
+                </Row>
               </Card>
             </div>
             <div style={{flex: 1}} className="box-img-product">
@@ -52,6 +73,7 @@ export default function ProductPage() {
                 >
                   {product?.title}
                 </h2>
+                <p>{product?.description}</p>
                 <Col>
                   <h2 style={{fontSize: "35px", color: "#0C9A00"}}>
                     {formatter(product?.price)}

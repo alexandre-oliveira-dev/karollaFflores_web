@@ -12,7 +12,7 @@ import Link from "antd/es/typography/Link";
 export default function CardProduct({
   data,
 }: {
-  data: Pick<Products, "id" | "imgUrl" | "price" | "title">[];
+  data: Pick<Products, "id" | "Photos" | "price" | "title">[];
 }) {
   return (
     <>
@@ -30,7 +30,7 @@ export default function CardProduct({
               >
                 <img
                   className="img-product"
-                  src={`data:image/*;base64,${item?.imgUrl}`}
+                  src={`data:image/*;base64,${item?.Photos[0]?.imgBase64}`}
                   alt={item?.title}
                 />
               </Link>

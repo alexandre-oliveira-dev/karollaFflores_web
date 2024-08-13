@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./style.css";
 import TitleComponent from "../titleComponent";
 import {Button, Row} from "antd";
@@ -10,7 +10,12 @@ import {dataProviderContext} from "@/context/dataProvider";
 
 export default function CategoryComponent() {
   const {products, categorys} = useContext(dataProviderContext);
-  const [category, setCategory] = useState(categorys[0]?.id);
+  const [category, setCategory] = useState<number | null>(null);
+  useEffect(() => {
+    if (categorys?.length > 0) {
+      setCategory(categorys[0]?.id);
+    }
+  }, [categorys]);
   const TabsCategory = () => {
     return (
       <>
@@ -22,7 +27,7 @@ export default function CategoryComponent() {
             overflowX: "hidden",
           }}
         >
-          {categorys.map((item, index) => {
+          {categorys?.map((item, index) => {
             return (
               <Button
                 onClick={() => setCategory(item?.id)}
@@ -45,7 +50,7 @@ export default function CategoryComponent() {
               textTransform: "capitalize",
             }}
           >
-            {categorys[category - 1]?.name}
+            {categorys[category || 0 - 1]?.name}
           </h3>
           <br />
 
@@ -57,7 +62,7 @@ export default function CategoryComponent() {
             }}
           >
             <CardProduct
-              data={products.filter(i => i.categoryId === category)}
+              data={products?.filter(i => i?.categoryId === category)}
             ></CardProduct>
           </Row>
           <Row
@@ -79,7 +84,11 @@ export default function CategoryComponent() {
   return (
     <section className="container-category">
       <TitleComponent text="Categorias"></TitleComponent>
-      <TabsCategory></TabsCategory>
+      {category && (
+        <>
+          <TabsCategory></TabsCategory>
+        </>
+      )}
     </section>
   );
 }

@@ -29,12 +29,14 @@ export default function Header() {
     <header className="header-container">
       <Row className="row-input">
         <div style={{flex: 1, display: "flex", justifyContent: "center"}}>
-          <Image
-            className="logo"
-            preview={false}
-            src={logo.src}
-            alt="logo"
-          ></Image>
+          <Link href="/">
+            <Image
+              className="logo"
+              preview={false}
+              src={logo.src}
+              alt="logo"
+            ></Image>
+          </Link>
         </div>
         <div style={{flex: 1, display: "flex", justifyContent: "center"}}>
           <Input
@@ -46,14 +48,7 @@ export default function Header() {
             placeholder="O que você precisa hoje ?"
           ></Input>
         </div>
-        {/*  <div
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            gap: "1rem",
-          }}
-        ></div> */}
+
         <div
           style={{
             display: "flex",
@@ -78,13 +73,33 @@ export default function Header() {
               </Link>
               <PiShoppingCartLight color="#121212" size={30} />
             </Row>
-            <div style={{display: "flex", alignItems: "center"}}>
-              <FiUser size={20}></FiUser>
-              <p>{userEmail}</p>
-            </div>
-            <Button style={{width: "max-content", border: 0, fontSize: "19px"}}>
-              sair <BiExit></BiExit>
-            </Button>
+            {userEmail && (
+              <div style={{display: "flex", alignItems: "center"}}>
+                <FiUser size={20}></FiUser>
+                <p>{userEmail}</p>
+              </div>
+            )}
+            <Link
+              style={{
+                width: "max-content",
+                border: 0,
+                fontSize: "19px",
+                boxShadow: "none",
+                backgroundColor: "#FF5353",
+                color: "#fff",
+                padding: "4px 5px 4px 5px",
+                borderRadius: 5,
+              }}
+            >
+              {userEmail ? (
+                <>
+                  sair <BiExit></BiExit>
+                </>
+              ) : (
+                "Entrar"
+              )}
+            </Link>
+            <Link style={{color: "#ff5353"}}>Criar conta</Link>
           </Row>
         </div>
       </Row>
