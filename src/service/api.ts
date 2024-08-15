@@ -3,8 +3,8 @@ import {Categorys, Products} from "@/types";
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: "https://karolla-flores-api.vercel.app/",
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://karolla-flores-api.vercel.app/",
+  // baseURL: "http://localhost:5000/",
   headers: {
     Authorization: "*",
   },
