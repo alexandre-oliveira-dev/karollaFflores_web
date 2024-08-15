@@ -19,7 +19,7 @@ export default function DataProvider({children}: {children: React.ReactNode}) {
   useEffect(() => {
     async function get() {
       const [{response: dataCategorys}, {response: dataProducts}] =
-        await Promise.all([await getCategorys(), await getProducts()]);
+        await Promise.all([await getCategorys(), await getProducts({})]);
 
       setCategorys(dataCategorys);
       setProducts(dataProducts);

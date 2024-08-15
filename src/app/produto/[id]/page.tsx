@@ -3,19 +3,27 @@
 import MainComponent from "@/app/components/mainComponent";
 import React, {useEffect, useState} from "react";
 import "./style.css";
-import {Button, Card, Col, Image, Row} from "antd";
+import {Button, Card, Col, Image, Row, Skeleton} from "antd";
 import {getProduct} from "@/service/api";
 import {useParams} from "next/navigation";
 import {Products} from "@/types";
 import {formatter} from "@/common/priceFormatter";
+import RelatedProductsComponent from "@/app/components/relatedProductsComponent";
 
 export default function ProductPage() {
   const {id} = useParams<{id: string}>();
   const [product, setProduct] = useState<Products>();
   const [imgBase64, setImgBase64] = useState("");
+  const [load, setLoad] = useState(false);
   useEffect(() => {
     async function get() {
-      setProduct(await getProduct({id: Number(id)}));
+      setLoad(true);
+      try {
+        setProduct(await getProduct({id: Number(id)}));
+        setLoad(false);
+      } catch {
+        setLoad(false);
+      }
     }
     get();
   }, [id]);
@@ -28,18 +36,32 @@ export default function ProductPage() {
             <div style={{flex: 1}} className="box-img-product">
               <Card className="card-img-product">
                 <div>
-                  {" "}
-                  <Image
-                    src={`data:image/*;base64,${
-                      imgBase64 ? imgBase64 : product?.Photos[0]?.imgBase64
-                    }`}
-                    alt={product?.title}
-                    className="imgProduct"
-                  ></Image>
+                  {load ? (
+                    <Skeleton.Image
+                      active
+                      style={{width: "470px", height: "300px"}}
+                    ></Skeleton.Image>
+                  ) : (
+                    <Image
+                      src={`data:image/*;base64,${
+                        imgBase64 ? imgBase64 : product?.Photos[0]?.imgBase64
+                      }`}
+                      alt={product?.title}
+                      className="imgProduct"
+                    ></Image>
+                  )}
                 </div>
                 <br />
                 <Row style={{gap: 10}}>
                   {product?.Photos?.map((photo, index) => {
+                    if (load)
+                      return (
+                        <Skeleton.Image
+                          key={index}
+                          active
+                          style={{width: "150px", height: "150px"}}
+                        ></Skeleton.Image>
+                      );
                     return (
                       <Image
                         className="img-product-mini"
@@ -93,6 +115,11 @@ export default function ProductPage() {
               </div>
             </div>
           </Row>
+          {product && (
+            <RelatedProductsComponent
+              categoryId={product?.categoryId}
+            ></RelatedProductsComponent>
+          )}
         </main>
       </MainComponent>
     </>

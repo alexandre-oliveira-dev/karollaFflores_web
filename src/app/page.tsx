@@ -1,11 +1,11 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, {useEffect} from "react";
 import "./page.css";
 import MainComponent from "./components/mainComponent";
 import logo from "./assets/logo-white.png";
 import logo2 from "./assets/logo2.png";
-import {Row} from "antd";
+import {notification, Row} from "antd";
 import deliveryIcon from "./assets/icons/Delivery.png";
 import discontIcon from "./assets/icons/Discount.png";
 import whatsIcon from "./assets/icons/WhatsApp.png";
@@ -14,6 +14,13 @@ import NewsListerComponent from "./components/newsListerComponent";
 import CategoryComponent from "./components/categoryComponent";
 
 export default function Home() {
+  useEffect(() => {
+    notification.info({
+      message: "KarollaFlores em desenvolvimento",
+      description: "versão: 1.0 - mobile não disponível.",
+    });
+    return () => {};
+  }, []);
   return (
     <>
       <MainComponent>

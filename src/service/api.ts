@@ -1,8 +1,10 @@
+import {ProductsFindManyArgs} from "@/prismaTypes";
 import {Categorys, Products} from "@/types";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://karolla-flores-api.vercel.app/",
+  // baseURL: "https://karolla-flores-api.vercel.app/",
+  baseURL: "http://localhost:5000/",
   headers: {
     Authorization: "*",
   },
@@ -24,8 +26,8 @@ export const getCategorys = async (): Promise<FindManyResponse<Categorys>> => {
   return res.data;
 };
 
-export const getProducts = async () => {
-  const res = await api.get<FindManyResponse<Products>>(`/products`);
+export const getProducts = async (where: ProductsFindManyArgs) => {
+  const res = await api.post<FindManyResponse<Products>>(`/getProducts`, where);
   return res.data;
 };
 

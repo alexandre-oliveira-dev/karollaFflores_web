@@ -17,9 +17,10 @@
 
 .col-footer h3 {
     font-size: 25px;
+    font-weight: 400;
 }
 
 .col-footer>a {
-    color: #121212;
+    color: var(--colorbtn);
     font-size: 17px;
 }
