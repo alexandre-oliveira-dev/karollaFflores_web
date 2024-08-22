@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import MainComponent from "@/app/components/mainComponent";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./style.css";
 import {Button, Card, Col, Image, Row, Skeleton} from "antd";
 import {getProduct} from "@/service/api";
@@ -9,12 +9,15 @@ import {useParams} from "next/navigation";
 import {Products} from "@/types";
 import {formatter} from "@/common/priceFormatter";
 import RelatedProductsComponent from "@/app/components/relatedProductsComponent";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function ProductPage() {
   const {id} = useParams<{id: string}>();
   const [product, setProduct] = useState<Products>();
   const [imgBase64, setImgBase64] = useState("");
   const [load, setLoad] = useState(false);
+  const {addItemCart} = useContext(dataProviderContext);
+
   useEffect(() => {
     async function get() {
       setLoad(true);
@@ -103,6 +106,16 @@ export default function ProductPage() {
                   {/* <p>vezes</p> */}
                 </Col>
                 <Button
+                  onClick={() => {
+                    if (product)
+                      addItemCart({
+                        id: product.id,
+                        img: product.Photos[0].imgBase64,
+                        price: product.price,
+                        qtd: 1,
+                        title: product.title,
+                      });
+                  }}
                   style={{
                     backgroundColor: "#FF5353",
                     height: 50,

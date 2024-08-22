@@ -4,16 +4,19 @@ import {formatter} from "@/common/priceFormatter";
 import {Products} from "@/types";
 import {Button, Card, Row} from "antd";
 import Title from "antd/es/typography/Title";
-import React from "react";
+import React, {useContext} from "react";
 import {MdOutlineShoppingCart} from "react-icons/md";
 import "./style.css";
 import Link from "antd/es/typography/Link";
+import {dataProviderContext} from "@/context/dataProvider";
 
 export default function CardProduct({
   data,
 }: {
   data: Pick<Products, "id" | "Photos" | "price" | "title">[];
 }) {
+  const {addItemCart} = useContext(dataProviderContext);
+
   return (
     <>
       {data?.map((item, index) => {
@@ -49,7 +52,18 @@ export default function CardProduct({
               </Title>
             </Row>
             <Row style={{justifyContent: "center", textAlign: "center"}}>
-              <Button>
+              <Button
+                onClick={() => {
+                  if (item)
+                    addItemCart({
+                      id: item.id,
+                      img: item.Photos[0].imgBase64,
+                      price: item.price,
+                      qtd: 1,
+                      title: item.title,
+                    });
+                }}
+              >
                 <MdOutlineShoppingCart /> Adicionar no carrinho
               </Button>
             </Row>
